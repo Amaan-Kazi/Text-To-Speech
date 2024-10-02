@@ -179,9 +179,13 @@ while (cmd.lower() != "stop"):
 
             if ("list" == cmd.replace("play ", "")):
                 print("\nCurrently available special sound effects: ")
-
-                for specialFile in os.listdir("special"):
-                    print("- " + specialFile)
+                
+                if (os.path.isdir("special")):
+                    for specialFile in os.listdir("special"):
+                        print("- " + specialFile)
+                else:
+                    print("No special sound effects available")
+                    os.mkdir("special")
             elif (os.path.isfile(playFile) == True):
                 playSound(str(playFile), 1.0)
                 print("Playing file: " + playFile)
